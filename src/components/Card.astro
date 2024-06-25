@@ -1,0 +1,89 @@
+---
+import ExternalButton from "./ExternalButton.astro";
+
+type Category = "pow" | "social";
+
+interface Props {
+  url: string;
+  imgSrc: string;
+  label: String;
+  position: number;
+  headline: String;
+  description?: string;
+  category: Category;
+  class?: String;
+}
+
+const {
+  url,
+  imgSrc,
+  label,
+  position,
+  headline,
+  description,
+  category,
+  class: className = "",
+} = Astro.props;
+
+const powLabel = "Proof of Work";
+const powLabelShort = "PoW";
+const socLabel = "Social Media";
+const socLabelShort = "Social";
+---
+
+<a
+  class={`group relative flex flex-col lg:flex-row lg:odd:flex-row-reverse w-full overflow-hidden bg-zinc-100 hover:bg-btc hover:scale-105  lg:h-96 cursor-pointer ease hover:shadow-xl rounded-2xl ${className}`}
+  href={url}
+>
+  <div
+    class="flex h-auto w-full lg:w-2/3 xl:w-1/2 lg:h-full flex-row p-4 md:p-6 lg:p-8 lg:group-odd:flex-row-reverse gap-3 lg:gap-6"
+  >
+    <div>
+      <div
+        class="text-zinc-400 group-hover:text-white flex flex-col items-center border-zinc-400 group-hover:border-white pr-3 lg:group-even:pr-3 border-r-4 lg:border-r-0 lg:group-even:border-r-4 lg:group-odd:border-l-4 lg:group-odd:pl-3"
+      >
+        <div class="text-2xl md:text-5xl lg:text-7xl">
+          {position < 9 ? `0${position + 1}` : position + 1}
+        </div>
+        <span class="hidden lg:block text-xs uppercase leading-none">
+          {category === "pow" ? powLabel : socLabel}
+        </span>
+        <span class="lg:hidden text-xs uppercase leading-none"
+          >{category === "pow" ? powLabelShort : socLabelShort}</span
+        >
+      </div>
+    </div>
+
+    <div class="flex flex-1 flex-col">
+      <div class="flex flex-1 flex-col">
+        <h1
+          class="flex flex-row items-center text-2xl md:text-5xl lg:text-7xl group-hover:text-white text-zinc-600 uppercase mb-2"
+        >
+          {headline}
+        </h1>
+
+        {
+          description && (
+            <p class="text-sm md:text-base lg:text-lg 2xl:text-2xl text-zinc-500 group-hover:text-white max-w-[80%] uppercase pt-3 lg:pt-5">
+              {description}
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex relative h-48 w-full lg:w-1/3 xl:w-1/2 lg:h-full bg-zinc-200"
+  >
+    <img
+      src={imgSrc}
+      class="object-cover h-full w-full saturate-50 group-hover:saturate-100 group-hover:brightness-50"
+      alt=""
+    />
+    <ExternalButton
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 uppercase bg-white text-zinc-500 group-hover:text-btc rounded-full px-5 py-2 text-base lg:text-xl shadow-lg"
+      >{label}</ExternalButton
+    >
+  </div>
+</a>
