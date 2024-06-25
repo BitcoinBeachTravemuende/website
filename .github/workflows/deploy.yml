@@ -37,7 +37,7 @@ jobs:
         run: nix develop --command bash -c 'bun install'
 
       - name: Build with VitePress
-        run: nix develop --command bash -c 'bun build && touch dist/.nojekyll'
+        run: nix develop --command bash -c 'bun run build && touch dist/.nojekyll'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
