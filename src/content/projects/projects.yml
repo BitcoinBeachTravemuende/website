@@ -1,11 +1,11 @@
 - headline: "Meetup"
   description: "Monatliches Treffen für Bitcoiner."
   link: 
-    label: "Webseite"
+    label: "Meetup"
     url: "https://meetup.bitcoinbeachtravemuende.de/"
   image: "bbt-aja.jpg"
 - headline: "Open Source"
-  description: "Code von eigenen Bitcoin Web Apps, Büchern und mehr."
+  description: "Code von eigenen Web Apps, Stickern, Büchern und mehr."
   link: 
     label: "GitHub"
     url: "https://github.com/BitcoinBeachTravemuende/"
