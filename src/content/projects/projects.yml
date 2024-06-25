@@ -1,0 +1,24 @@
+- headline: "Meetup"
+  description: "Monatliches Treffen für Bitcoiner."
+  link: 
+    label: "Webseite"
+    url: "https://meetup.bitcoinbeachtravemuende.de/"
+  image: "bbt-aja.jpg"
+- headline: "Open Source"
+  description: "Code von eigenen Bitcoin Web Apps, Büchern und mehr."
+  link: 
+    label: "GitHub"
+    url: "https://github.com/BitcoinBeachTravemuende/"
+  image: "bbt-gh-code.png"
+- headline: "Open-Air Kino"
+  description: "Bitcoin Filme strandnah und Open-Air."
+  link: 
+    label: "Nostr"
+    url: "https://primal.net/e/note1ycx39hdv4yrge2j0qd2pytnnnlj7dpje6x68ky8auqn3vm2x9nmsngfxjs"
+  image: "bbt-kino.jpg"
+- headline: "Eisbaden"
+  description: "Winterbaden mit Bitcoinern in der Ostsee."
+  link: 
+    label: "Nostr"
+    url: "https://primal.net/e/note1a8fvyck4jpzra722ehmdsm94h3gkj6xhdy8acdr7dzkwtr2vuttqu20vjq"
+  image: "bbt-eisbaden.jpg"

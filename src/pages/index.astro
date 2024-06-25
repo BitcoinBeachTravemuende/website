@@ -1,0 +1,102 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import External from "../components/icons/External.astro";
+import LogoText from "../components/icons/LogoText.astro";
+
+const entries = await getEntry("projects", "projects");
+
+const projects = entries.data;
+---
+
+<Layout title="">
+  <header class="flex flex-col items-center py-10 md:py-20">
+    <div
+      class="scale-75 md:scale-100 border-white border-8 drop-shadow-lg rounded-full hover:scale-105 ease"
+    >
+      <bbt-logo></bbt-logo>
+    </div>
+
+    <LogoText
+      class="mt-5 lg:mt-7 mb-1 lg:mb-3 scale-75 md:scale-100 fill-zinc-600"
+    />
+    <p
+      class="uppercase text-xs text-gray-200 bg-zinc-600 rounded-lg px-5 lg:px-8 mt-2 slashed-zero tracking-widest"
+    >
+      seit 2023
+    </p>
+  </header>
+  <main class="px-5 md:px-10 py-10 md:py-20">
+    <h2
+      class="text-4xl md:text-6xl lg:text-8xl text-gray-300 uppercase mb-10 lg:mb-28 text-center"
+    >
+      Proof of Work
+    </h2>
+
+    <div class="grid grid-cols-1 gap-8 lg:gap-16">
+      {
+        projects.map(({ headline, description, link, image }, i) => (
+          <a
+            class={`group relative flex flex-col lg:flex-row lg:odd:flex-row-reverse w-full overflow-hidden bg-zinc-100 hover:bg-orange-400 hover:scale-105 rounded-xl h-96 cursor-pointer ease `}
+            href={link.url}
+          >
+            <div class="flex h-2/3 w-full lg:w-2/3 xl:w-1/2 lg:h-full flex-row p-6 lg:group-odd:flex-row-reverse gap-3 lg:gap-6 ">
+              <div>
+                <div class=" text-gray-400 group-hover:text-white flex flex-col items-center border-gray-400 group-hover:border-white pr-3 lg:group-even:pr-3 border-r-4 lg:border-r-0 lg:group-even:border-r-4 lg:group-odd:border-l-4 lg:group-odd:pl-3">
+                  <div class="text-2xl md:text-5xl lg:text-7xl ">
+                    {i < 9 ? `0${i + 1}` : i + 1}
+                  </div>
+                  <span class="hidden lg:block text-xs uppercase leading-none">
+                    Proof of Work
+                  </span>
+                  <span class="lg:hidden text-xs uppercase leading-none">
+                    PoW
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex flex-1 flex-col">
+                <div class="flex flex-1 flex-col">
+                  <h1 class="flex flex-row items-center text-2xl md:text-5xl lg:text-7xl group-hover:text-white text-gray-600  uppercase mb-2">
+                    {headline}
+                  </h1>
+
+                  {description && (
+                    <p class="text-sm md:text-base lg:text-lg xl:text-2xl text-gray-500 group-hover:text-white max-w-[80%] uppercase pt-5">
+                      {description}
+                    </p>
+                  )}
+                </div>
+                <div class="mt-5 lg:mt-10">
+                  <div
+                    class={`ease inline-flex flex-row items-center bg-white text-gray-500 rounded-full px-5 py-2 text-sm md:text-base lg:text-xl uppercase group-hover:text-orange-400`}
+                  >
+                    {link.label}{" "}
+                    <External class="ml-3 h-4 w-4 lg:h-5 lg:w-5 text-inherit" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <img
+              src={image}
+              class="object-cover h-1/3 w-full lg:w-1/3 xl:w-1/2 lg:h-full ease bg-zinc-200 saturate-50 group-hover:saturate-100"
+              alt=""
+            />
+            {/* 
+            <div class="absolute inset-0  bg-zinc-950 opacity-0 group-hover:opacity-70 ease" />
+            <button
+              class={`ease absolute right-1/2 translate-x-[50%] translate-y-[-50%] top-1/2 bg-white text-zinc-800 rounded-full px-6 py-1 text-2xl uppercase opacity-0 group-hover:opacity-100`}
+            >
+              Projekt
+            </button> */}
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import "@bitcoinbeachtravemuende/bbt-logo";
+</script>
