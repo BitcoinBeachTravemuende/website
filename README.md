@@ -2,7 +2,6 @@
 
 https://bitcoinbeachtravemuende.de
 
-
 ## Develop (locally)
 
 Once you've installed dependencies with `bun i`, start a development server:
