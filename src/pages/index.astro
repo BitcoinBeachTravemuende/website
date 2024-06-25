@@ -1,0 +1,85 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import LogoText from "../components/icons/LogoText.astro";
+import Headline from "../components/Headline.astro";
+
+const { data: projects } = await getEntry("projects", "projects");
+const { data: social } = await getEntry("social", "social");
+---
+
+<Layout title="">
+  <header class="flex flex-col items-center py-10 md:py-20">
+    <div
+      class="ease scale-75 rounded-full border-8 border-white drop-shadow-lg hover:scale-105 md:scale-100"
+    >
+      <bbt-logo></bbt-logo>
+    </div>
+
+    <p
+      class="mt-2 px-5 text-xs uppercase slashed-zero tracking-widest text-zinc-600 lg:px-8"
+    >
+      seit 2023
+    </p>
+    <LogoText
+      class="mb-1 mt-5 scale-75 fill-zinc-600 md:scale-100 lg:mb-3 lg:mt-7"
+    />
+  </header>
+  <main class="px-5 py-10 md:px-10 md:py-20">
+    <Headline class="mb-12 lg:mb-28"> Proof of Work </Headline>
+    <div class="grid grid-cols-1 gap-16 lg:gap-28">
+      {
+        projects.map(({ headline, description, link, image }, i) => (
+          <Card
+            headline={headline}
+            url={link.url}
+            label={link.label}
+            description={description}
+            imgSrc={image}
+            position={i}
+            category="pow"
+          />
+        ))
+      }
+    </div>
+
+    <Headline class="mb-10 mt-20 lg:mb-16 lg:mt-32">Social</Headline>
+    <div class="grid grid-cols-1 gap-8 lg:gap-16">
+      {
+        social.map(({ headline, description, link, image }, i) => (
+          <Card
+            headline={headline}
+            url={link.url}
+            label={link.label}
+            description={description}
+            imgSrc={image}
+            position={i}
+            category="social"
+          />
+        ))
+      }
+    </div>
+  </main>
+  <footer class="my-20 flex flex-col items-center p-4 uppercase text-zinc-400">
+    <aside class="flex flex-col items-center text-base md:text-xl">
+      <p>
+        Open Source bei
+        <a
+          href="https://github.com/BitcoinBeachTravemuende/website/"
+          class="underline"
+        >
+          GitHub
+        </a>.
+      </p>
+      <p>
+        Gebaut mit
+        <span class="mx-1 text-xl text-btc">♥</span> in Travemünde.
+      </p>
+    </aside>
+  </footer>
+</Layout>
+
+<script>
+  import "@bitcoinbeachtravemuende/bbt-logo";
+</script>

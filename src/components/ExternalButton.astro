@@ -1,0 +1,12 @@
+---
+import External from "./icons/External.astro";
+const { class: className, ...rest } = Astro.props;
+---
+
+<button
+  class={`inline-flex flex-row items-center uppercase ${className} ease`}
+  {...rest}
+>
+  <slot />
+  <External class="ml-3 h-6 w-6 text-inherit" />
+</button>
