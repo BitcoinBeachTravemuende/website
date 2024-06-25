@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { projects, socials } from "../types";
+import { projects, social } from "../types";
 
 // Defining Collections to provide all data anybody can update easily
 // Note: Data in YAML needs type 'data', data in Markdown needs type 'content'
@@ -12,7 +12,7 @@ const projectsCollection = defineCollection({
 
 const socialCollection = defineCollection({
   type: "data",
-  schema: socials,
+  schema: social,
 });
 
 export const collections = {
