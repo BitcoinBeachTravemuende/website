@@ -1,21 +1,25 @@
 import { defineCollection } from "astro:content";
-import { projects, social } from "../types";
 
-// Defining Collections to provide all data anybody can update easily
-// Note: Data in YAML needs type 'data', data in Markdown needs type 'content'
-// https://docs.astro.build/en/guides/content-collections/#defining-collections
+import { z } from "astro/zod";
 
-const projectsCollection = defineCollection({
-  type: "data",
-  schema: projects,
+const content = z.object({
+  url: z.string().url(),
+  label: z.string(),
+  title: z.string(),
+  image: z.string(),
 });
 
 const socialCollection = defineCollection({
-  type: "data",
-  schema: social,
+  type: "content",
+  schema: content,
+});
+
+const powCollection = defineCollection({
+  type: "content",
+  schema: content,
 });
 
 export const collections = {
-  projects: projectsCollection,
   social: socialCollection,
+  pow: powCollection,
 };

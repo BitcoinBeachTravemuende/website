@@ -1,24 +1,24 @@
 ---
-import { getEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import LogoText from "../components/icons/LogoText.astro";
 import Headline from "../components/Headline.astro";
+import { getCollection } from "astro:content";
 
-const { data: projects } = await getEntry("projects", "projects");
-const { data: social } = await getEntry("social", "social");
+const pow = await getCollection("pow");
+const social = await getCollection("social");
 ---
 
 <Layout title="">
   <header class="flex flex-col items-center py-10 md:py-20">
     <div
-      class="ease scale-75 rounded-full border-8 border-white drop-shadow-lg hover:scale-105 md:scale-100"
+      class="scale-[.8] rounded-full border-8 border-white drop-shadow-lg lg:scale-100"
     >
       <bbt-logo></bbt-logo>
     </div>
 
     <p
-      class="mt-2 px-5 text-xs uppercase slashed-zero tracking-widest text-zinc-600 lg:px-8"
+      class="-mt-2 px-2 text-xs uppercase slashed-zero tracking-widest text-zinc-600 lg:mt-2 lg:px-8"
     >
       seit 2023
     </p>
@@ -28,58 +28,72 @@ const { data: social } = await getEntry("social", "social");
   </header>
   <main class="px-5 py-10 md:px-10 md:py-20">
     <Headline class="mb-12 lg:mb-28"> Proof of Work </Headline>
+
     <div class="grid grid-cols-1 gap-16 lg:gap-28">
       {
-        projects.map(({ headline, description, link, image }, i) => (
-          <Card
-            headline={headline}
-            url={link.url}
-            label={link.label}
-            description={description}
-            imgSrc={image}
-            position={i}
-            category="pow"
-          />
-        ))
+        pow.map(async (d, i) => {
+          const { Content } = await d.render();
+          const { title, image, url, label } = d.data;
+
+          return (
+            <Card
+              headline={title}
+              url={url}
+              label={label}
+              imgSrc={image}
+              position={i}
+              category="pow"
+            >
+              <Content />
+            </Card>
+          );
+        })
       }
     </div>
-
-    <Headline class="mb-10 mt-20 lg:mb-16 lg:mt-32">Social</Headline>
+    <Headline class="mb-0 mt-10 lg:mb-16 lg:mt-32">Social</Headline>
     <div class="grid grid-cols-1 gap-8 lg:gap-16">
       {
-        social.map(({ headline, description, link, image }, i) => (
-          <Card
-            headline={headline}
-            url={link.url}
-            label={link.label}
-            description={description}
-            imgSrc={image}
-            position={i}
-            category="social"
-          />
-        ))
+        social.map(async (d, i) => {
+          const { Content } = await d.render();
+          const { title, image, url, label } = d.data;
+
+          return (
+            <Card
+              headline={title}
+              url={url}
+              label={label}
+              imgSrc={image}
+              position={i}
+              category="social"
+            >
+              <Content />
+            </Card>
+          );
+        })
       }
     </div>
+    <footer
+      class="mt-20 flex flex-col items-center p-4 uppercase text-zinc-400"
+    >
+      <aside class="flex flex-col items-center text-xs lg:text-xl">
+        <p>
+          Open Source bei
+          <a
+            href="https://github.com/BitcoinBeachTravemuende/website/"
+            class="underline"
+          >
+            GitHub
+          </a>.
+        </p>
+        <p>
+          Gebaut mit
+          <span class="text-md mx-1 !text-btc">♥</span> in Travemünde.
+        </p>
+      </aside>
+    </footer>
   </main>
-  <footer class="my-20 flex flex-col items-center p-4 uppercase text-zinc-400">
-    <aside class="flex flex-col items-center text-base md:text-xl">
-      <p>
-        Open Source bei
-        <a
-          href="https://github.com/BitcoinBeachTravemuende/website/"
-          class="underline"
-        >
-          GitHub
-        </a>.
-      </p>
-      <p>
-        Gebaut mit
-        <span class="mx-1 text-xl text-btc">♥</span> in Travemünde.
-      </p>
-    </aside>
-  </footer>
-</Layout>
 
-<script>
-  import "@bitcoinbeachtravemuende/bbt-logo";
-</script>
+  <script>
+    import "@bitcoinbeachtravemuende/bbt-logo";
+  </script>
+</Layout>
