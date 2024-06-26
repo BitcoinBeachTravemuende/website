@@ -6,12 +6,12 @@ type Category = "pow" | "social";
 interface Props {
   url: string;
   imgSrc: string;
-  label: String;
+  label: string;
   position: number;
-  headline: String;
+  headline: string;
   description?: string;
   category: Category;
-  class?: String;
+  class?: string;
 }
 
 const {
@@ -20,7 +20,6 @@ const {
   label,
   position,
   headline,
-  description,
   category,
   class: className = "",
 } = Astro.props;
@@ -31,9 +30,8 @@ const socLabel = "Social Media";
 const socLabelShort = "Social";
 ---
 
-<a
-  class={`group relative flex flex-col lg:flex-row lg:odd:flex-row-reverse w-full overflow-hidden bg-zinc-100 hover:bg-btc hover:scale-105  lg:h-96 cursor-pointer ease hover:shadow-xl rounded-2xl ${className}`}
-  href={url}
+<div
+  class={`group relative flex flex-col lg:flex-row lg:odd:flex-row-reverse w-full overflow-hidden bg-zinc-100 hover:bg-btc hover:scale-105  lg:h-96 ease hover:shadow-xl rounded-2xl ${className}`}
 >
   <div
     class="flex h-auto w-full flex-row gap-3 p-4 md:p-6 lg:h-full lg:w-2/3 lg:gap-6 lg:p-8 lg:group-odd:flex-row-reverse xl:w-1/2"
@@ -62,19 +60,18 @@ const socLabelShort = "Social";
           {headline}
         </h1>
 
-        {
-          description && (
-            <p class="max-w-[80%] pt-3 text-sm uppercase text-zinc-500 group-hover:text-white md:text-base lg:pt-5 lg:text-lg 2xl:text-2xl">
-              {description}
-            </p>
-          )
-        }
+        <div
+          class="max-w-[80%] pt-3 text-sm uppercase text-zinc-500 group-hover:text-white md:text-base lg:pt-5 lg:text-lg 2xl:text-2xl [&>p>a]:normal-case [&>p>a]:text-btc [&>p>a]:underline group-hover:[&>p>a]:text-white"
+        >
+          <slot />
+        </div>
       </div>
     </div>
   </div>
 
-  <div
-    class="relative flex h-48 w-full bg-zinc-200 lg:h-full lg:w-1/3 xl:w-1/2"
+  <a
+    href={url}
+    class="relative flex h-48 w-full cursor-pointer bg-zinc-200 lg:h-full lg:w-1/3 xl:w-1/2"
   >
     <img
       src={imgSrc}
@@ -82,8 +79,8 @@ const socLabelShort = "Social";
       alt=""
     />
     <ExternalButton
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white px-5 py-2 text-base uppercase text-zinc-500 shadow-lg group-hover:text-btc lg:text-xl"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-btc bg-white px-5 py-2 text-base uppercase text-btc shadow-lg group-hover:border-white group-hover:bg-btc group-hover:text-white lg:text-xl"
       >{label}</ExternalButton
     >
-  </div>
-</a>
+  </a>
+</div>
