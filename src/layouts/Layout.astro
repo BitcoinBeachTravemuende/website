@@ -6,6 +6,7 @@ import LangNav from "../components/LangNav.astro";
 import LogoText from "../components/icons/LogoText.astro";
 import Headline from "../components/Headline.astro";
 import { getCollection } from "astro:content";
+import ThemeButton from "../components/ThemeButton.astro";
 
 interface Props {
   lang: Lang;
@@ -29,27 +30,37 @@ const social = await getCollection("social", ({ id }) => id.startsWith(lang));
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body>
+  <body class="dark:bg-zinc-800">
     <div class="container mx-auto px-5">
       <header class="flex flex-col items-center pb-10 pt-4 md:pb-20">
-        <LangNav class="mb-10 flex w-full justify-end md:mb-20" {lang} />
+        <!-- settings: lang + theme -->
+        <div class="mb-10 flex w-full flex-row items-center gap-3 md:mb-20">
+          <LangNav class="flex-1" lang={lang} />
+          <ThemeButton />
+        </div>
+
         <div
-          class="scale-[.8] rounded-full border-8 border-white drop-shadow-lg lg:scale-100"
+          class="scale-[.8] rounded-full border-8 border-white drop-shadow-lg lg:scale-100 dark:border-zinc-300"
         >
-          <bbt-logo></bbt-logo>
+          <!-- logo in light mode -->
+          <bbt-logo class="block dark:hidden" stroke="#52525b" fill="white"
+          ></bbt-logo>
+          <!-- logo in dark mode -->
+          <bbt-logo class="hidden dark:block" stroke="#d4d4d8" fill="#3f3f46"
+          ></bbt-logo>
         </div>
 
         <a
-          class="-mt-2 bg-transparent px-8 py-2 text-xs uppercase slashed-zero tracking-widest text-zinc-600 hover:bg-btc hover:text-white lg:mt-1 lg:text-base"
+          class="-mt-2 bg-transparent px-8 py-2 text-xs uppercase slashed-zero tracking-widest text-zinc-600 hover:bg-btc hover:text-white lg:mt-1 lg:text-base dark:text-zinc-300 dark:hover:bg-btc dark:hover:text-zinc-800"
           href="https://timeline.bitcoinbeachtravemuende.de/#794326"
         >
           {t("est")} 2023
         </a>
         <LogoText
-          class="ease mb-1 mt-5 scale-75 fill-zinc-600 md:scale-100 lg:mb-3 lg:mt-7"
+          class="ease mb-1 mt-5 scale-75 fill-zinc-600 md:scale-100 lg:mb-3 lg:mt-7 dark:fill-zinc-300"
         />
       </header>
-      <main class="py-10 md:px-10 md:py-20">
+      <main class="py-10 md:py-20">
         <Headline class="mb-12 lg:mb-28">Proof of Work </Headline>
 
         <div class="grid grid-cols-1 gap-16 lg:gap-28">
@@ -96,7 +107,7 @@ const social = await getCollection("social", ({ id }) => id.startsWith(lang));
           }
         </div>
         <footer
-          class="mt-20 flex flex-col items-center py-4 uppercase text-zinc-400"
+          class="mt-20 flex flex-col items-center py-4 uppercase text-zinc-400 dark:text-zinc-500"
         >
           <aside class="flex flex-col items-center text-xs lg:text-base">
             <p>
