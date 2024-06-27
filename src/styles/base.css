@@ -17,6 +17,6 @@ html {
   }
 
   a {
-    @apply bg-btc px-1 hover:bg-white hover:text-btc ease text-white;
+    @apply bg-btc px-1 hover:bg-white dark:hover:bg-zinc-950 hover:text-btc ease text-zinc-50 dark:text-zinc-800 dark:hover:text-btc;
   }
 }

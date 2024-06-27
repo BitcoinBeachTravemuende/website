@@ -9,12 +9,12 @@ interface Props {
 const { lang, class: className = "" } = Astro.props;
 ---
 
-<ul class={` ${className}`}>
+<ul class={`flex flex-row ${className}`}>
   {
     LANGUAGES.map((l) => (
       <li class="uppercase md:first-of-type:mr-1">
         <a
-          class={`ease bg-transparent p-1 text-sm text-zinc-500 hover:bg-btc hover:text-white md:text-lg lg:p-2 ${lang === l ? "font-bold" : "font-normal"}`}
+          class={`ease bg-transparent p-2 text-sm text-zinc-500 hover:bg-btc hover:text-white dark:text-zinc-400 dark:hover:bg-btc dark:hover:text-zinc-800 md:text-lg lg:p-3 ${lang === l ? "font-bold" : "font-normal"}`}
           href={l === "de" ? "/" : `/${l}`}
         >
           {l}
