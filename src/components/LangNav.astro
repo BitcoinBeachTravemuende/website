@@ -1,0 +1,25 @@
+---
+import { type Lang, LANGUAGES } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  class?: String;
+}
+
+const { lang, class: className = "" } = Astro.props;
+---
+
+<ul class={` ${className}`}>
+  {
+    LANGUAGES.map((l) => (
+      <li class="uppercase md:first-of-type:mr-1">
+        <a
+          class={`ease bg-transparent p-1 text-sm text-zinc-500 hover:bg-btc hover:text-white md:text-lg lg:p-2 ${lang === l ? "font-bold" : "font-normal"}`}
+          href={l === "de" ? "/" : `/${l}`}
+        >
+          {l}
+        </a>
+      </li>
+    ))
+  }
+</ul>

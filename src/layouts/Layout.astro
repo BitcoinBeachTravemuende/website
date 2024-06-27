@@ -1,23 +1,124 @@
 ---
+import { useTranslations, type Lang } from "../i18n";
 import "../styles/base.css";
+import Card from "../components/Card.astro";
+import LangNav from "../components/LangNav.astro";
+import LogoText from "../components/icons/LogoText.astro";
+import Headline from "../components/Headline.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const t = useTranslations(lang);
+
+const pow = await getCollection("pow", ({ id }) => id.startsWith(lang));
+const social = await getCollection("social", ({ id }) => id.startsWith(lang));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <title>Bitcoin Beach Travemünde</title>
-    <meta
-      name="description"
-      content="Offizielle Webseite vom Bitcoin Beach in Lübeck-Travemünde"
-    />
+    <title>{await t("title")}</title>
+    <meta name="description" content={await t("description")} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-    <div class="container mx-auto">
-      <slot />
+    <div class="container mx-auto px-5">
+      <header class="flex flex-col items-center pb-10 pt-4 md:pb-20">
+        <LangNav class="mb-10 flex w-full justify-end md:mb-20" {lang} />
+        <div
+          class="scale-[.8] rounded-full border-8 border-white drop-shadow-lg lg:scale-100"
+        >
+          <bbt-logo></bbt-logo>
+        </div>
+
+        <a
+          class="-mt-2 bg-transparent px-8 py-2 text-xs uppercase slashed-zero tracking-widest text-zinc-600 hover:bg-btc hover:text-white lg:mt-1 lg:text-base"
+          href="https://timeline.bitcoinbeachtravemuende.de/#794326"
+        >
+          {t("est")} 2023
+        </a>
+        <LogoText
+          class="ease mb-1 mt-5 scale-75 fill-zinc-600 md:scale-100 lg:mb-3 lg:mt-7"
+        />
+      </header>
+      <main class="py-10 md:px-10 md:py-20">
+        <Headline class="mb-12 lg:mb-28">Proof of Work </Headline>
+
+        <div class="grid grid-cols-1 gap-16 lg:gap-28">
+          {
+            pow.map(async (d, i) => {
+              const { Content } = await d.render();
+              const { title, image, url, label } = d.data;
+
+              return (
+                <Card
+                  headline={title}
+                  url={url}
+                  label={label}
+                  imgSrc={image}
+                  position={i}
+                  category="pow"
+                >
+                  <Content />
+                </Card>
+              );
+            })
+          }
+        </div>
+        <Headline class="mb-0 mt-10 lg:mb-16 lg:mt-32">Social</Headline>
+        <div class="grid grid-cols-1 gap-8 lg:gap-16">
+          {
+            social.map(async (d, i) => {
+              const { Content } = await d.render();
+              const { title, image, url, label } = d.data;
+
+              return (
+                <Card
+                  headline={title}
+                  url={url}
+                  label={label}
+                  imgSrc={image}
+                  position={i}
+                  category="social"
+                >
+                  <Content />
+                </Card>
+              );
+            })
+          }
+        </div>
+        <footer
+          class="mt-20 flex flex-col items-center py-4 uppercase text-zinc-400"
+        >
+          <aside class="flex flex-col items-center text-xs lg:text-base">
+            <p>
+              {t("footerOS")}
+              <a
+                href="https://github.com/BitcoinBeachTravemuende/website/"
+                class=""
+              >
+                GitHub
+              </a>.
+            </p>
+            <p>
+              {t("footerMade")}
+              <span class="text-sm !text-btc lg:text-lg">♥</span> in Travemünde.
+            </p>
+          </aside>
+        </footer>
+      </main>
+
+      <script>
+        import "@bitcoinbeachtravemuende/bbt-logo";
+      </script>
     </div>
   </body>
 </html>
