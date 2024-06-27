@@ -11,4 +11,8 @@ html {
   .ease {
     @apply transition duration-300 ease-in-out;
   }
+
+  a {
+    @apply bg-transparent underline hover:bg-btc hover:text-white ease text-btc;
+  }
 }
