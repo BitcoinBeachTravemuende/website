@@ -40,7 +40,7 @@ const social = await getCollection("social", ({ id }) => id.startsWith(lang));
         </div>
 
         <div
-          class="scale-[.8] rounded-full border-8 border-white drop-shadow-lg lg:scale-100 dark:border-zinc-300"
+          class="scale-[.8] rounded-full border-8 border-white drop-shadow-lg dark:border-zinc-300 lg:scale-100"
         >
           <!-- logo in light mode -->
           <bbt-logo class="block dark:hidden" stroke="#52525b" fill="white"
@@ -51,13 +51,13 @@ const social = await getCollection("social", ({ id }) => id.startsWith(lang));
         </div>
 
         <a
-          class="-mt-2 bg-transparent px-8 py-2 text-xs uppercase slashed-zero tracking-widest text-zinc-600 hover:bg-btc hover:text-white lg:mt-1 lg:text-base dark:text-zinc-300 dark:hover:bg-btc dark:hover:text-zinc-800"
+          class="-mt-2 bg-transparent px-8 py-2 text-xs uppercase slashed-zero tracking-widest text-zinc-600 hover:bg-btc hover:text-white dark:text-zinc-300 dark:hover:bg-btc dark:hover:text-zinc-800 lg:mt-1 lg:text-base"
           href="https://timeline.bitcoinbeachtravemuende.de/#794326"
         >
           {t("est")} 2023
         </a>
         <LogoText
-          class="ease mb-1 mt-5 scale-75 fill-zinc-600 md:scale-100 lg:mb-3 lg:mt-7 dark:fill-zinc-300"
+          class="ease mb-1 mt-5 scale-75 fill-zinc-600 dark:fill-zinc-300 md:scale-100 lg:mb-3 lg:mt-7"
         />
       </header>
       <main class="py-10 md:py-20">
