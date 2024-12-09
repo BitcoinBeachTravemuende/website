@@ -1,8 +1,8 @@
 ---
 title: Meetup
-label: Meetup
+label: Termine
 url: https://meetup.bitcoinbeachtravemuende.de
 image: bbt-aja.jpg
 ---
 
-Monatliches Treffen für Bitcoiner.
+Monatliches Bitcoin Treffen in Lübeck Travemünde. Aktuelle Termine gibt's [hier](https://meetup.bitcoinbeachtravemuende.de).

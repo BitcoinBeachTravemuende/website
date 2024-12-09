@@ -56,9 +56,15 @@ const social = await getCollection("social", ({ id }) => id.startsWith(lang));
         >
           {t("est")} 2023
         </a>
-        <LogoText
-          class="ease mb-1 mt-5 scale-75 fill-zinc-600 dark:fill-zinc-300 md:scale-100 lg:mb-3 lg:mt-7"
-        />
+        <h1 class="flex flex-col items-center">
+          <LogoText
+            class="ease mb-1 mt-5 scale-75 fill-zinc-600 dark:fill-zinc-300 md:scale-100 lg:mb-3 lg:mt-7"
+          />
+          <span
+            class="absolute -m-[1px] h-[1px] w-[1px] overflow-hidden whitespace-nowrap border-0 p-0"
+            >Bitcoin Beach Travemünde</span
+          >
+        </h1>
       </header>
       <main class="py-10 md:py-20">
         <Headline class="mb-12 lg:mb-28">Proof of Work </Headline>
