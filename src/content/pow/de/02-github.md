@@ -5,4 +5,8 @@ url: https://github.com/orgs/BitcoinBeachTravemuende
 image: website/bbt-gh-code.png
 ---
 
-Web Apps [Fees](https://bitcoinbeachtravemuende.github.io/fees), [WORDLIST](https://bitcoinbeachtravemuende.github.io/wordlist), [Exify](https://github.com/BitcoinBeachTravemuende/exify?tab=readme-ov-file#exify), [Zeitleiste](https://bitcoinbeachtravemuende.github.io/timeline), Bücher [Der Bitcoin Virus](https://bitcoinbeachtravemuende.github.io/DerBitcoinVirus/) und mehr.
+Egal ob Code der [Homepage](https://github.com/BitcoinBeachTravemuende/website),
+[Meetup Webseite](https://github.com/BitcoinBeachTravemuende/meetup),
+[Zeitleiste](https://github.com/BitcoinBeachTravemuende/timeline)
+oder Bücher wie [Der Bitcoin Virus](https://bitcoinbeachtravemuende.github.io/DerBitcoinVirus/).
+Alles ist Open-Source bei [GitHub](https://github.com/orgs/BitcoinBeachTravemuende).
