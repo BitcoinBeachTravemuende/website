@@ -27,7 +27,7 @@ const social = await getCollection("social", ({ id }) => id.startsWith(lang));
     <title>{await t("title")}</title>
     <meta name="description" content={await t("description")} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/website/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body class="dark:bg-zinc-800">
